@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: http://mehromahqazvin.ir/sitemap_index.xml
+Sitemap: http://mehromahqazvin.ir/sitemap.xml
