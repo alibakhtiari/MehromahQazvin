@@ -1,0 +1,16 @@
+{
+  "name": "mehromah",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "NODE_ENV=production wrangler build",
+    "deploy": "NODE_ENV=production wrangler deploy --env production",
+    "dev": "wrangler dev"
+  },
+  "dependencies": {
+    "@cloudflare/kv-asset-handler": "^0.3.1"
+  },
+  "devDependencies": {
+    "wrangler": "^4.42.2"
+  }
+}

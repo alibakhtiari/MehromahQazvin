@@ -1,0 +1,12 @@
+name = "mehromah"
+main = "src/index.js"
+compatibility_date = "2023-12-01"
+
+[[kv_namespaces]]
+binding = "__STATIC_CONTENT"
+
+[site]
+bucket = "./"
+
+[env.production]
+route = "mehromahqazvin.ir/*"
