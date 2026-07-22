@@ -1,17 +1,19 @@
-# 🏢 Mehromah Qazvin Website (Astro + Tailwind CSS)
+# 🏢 Mehromah Qazvin Commercial Complex (مجتمع تجاری اداری مهروماه قزوین)
 
 Welcome to the modernized codebase of **Mehromah Qazvin Commercial & Administrative Complex** (مجتمع تجاری اداری مهروماه قزوین).
 
-This project has been migrated from a legacy WordPress HTML structure into a high-performance, modern static site built with **Astro** and **Tailwind CSS**.
+This project is a high-performance, modern static site built with **Astro**, **Tailwind CSS v4**, **View Transitions**, and **JSON-LD Structured Data**.
 
 ---
 
-## ⚡ Tech Stack
+## ⚡ Tech Stack & Architecture Highlights
 
-- **Framework**: [Astro v4](https://astro.build/) (Static Site Generation / SSG mode)
-- **Styling**: [Tailwind CSS v3](https://tailwindcss.com/) + `@tailwindcss/typography`
+- **Framework**: [Astro v5](https://astro.build/) (Static Site Generation / SSG mode)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Transitions**: Native Astro `<ClientRouter />` View Transitions for instant SPA-like page navigation
 - **Content Management**: Astro Content Collections (Markdown with Zod schema validation)
-- **Typography**: Local `IRANSansWeb` Persian font hosting (`src/styles/fonts.css`)
+- **Typography**: Single high-performance `IRANSansXFaNum-Regular.woff2` Persian font with preloading
+- **SEO & AEO**: Full OpenGraph, ShoppingCenter + BlogPosting JSON-LD schemas, and `llms.txt` AI Search engine optimization
 - **Deployment**: Static Site Hosting (Cloudflare Pages, Vercel, or Nginx)
 
 ---
@@ -21,10 +23,11 @@ This project has been migrated from a legacy WordPress HTML structure into a hig
 - **Strict Directory-Based Routing**: Configured `build.format: 'directory'` in `astro.config.mjs` to maintain 100% 1:1 URL parity with legacy SEO indexes:
   - `/` &rarr; `dist/index.html`
   - `/blog/` &rarr; `dist/blog/index.html`
-  - `/blog/2017/07/1173/` &rarr; `dist/blog/2017/07/1173/index.html`
+  - `/blog/2021/05/2686/` &rarr; `dist/blog/2021/05/2686/index.html`
   - `/blog/category/ev/` &rarr; `dist/blog/category/ev/index.html`
   - `/blog/category/ev/page/2/` &rarr; `dist/blog/category/ev/page/2/index.html`
   - `/blog/events/` &rarr; `dist/blog/events/index.html`
+  - `/llms.txt` &rarr; Generative AI Search Engine Context Standard
 
 ---
 
@@ -32,68 +35,58 @@ This project has been migrated from a legacy WordPress HTML structure into a hig
 
 ```plaintext
 ├── public/                     # Static root assets, favicons, site manifests
-│   ├── assets/                 # Shared images, floor plans, font assets
+│   ├── assets/                 # Shared images, floor plans
+│   ├── IRANSansXFaNum-Regular.woff2 # Exclusive Persian font
 │   ├── BingSiteAuth.xml
 │   ├── robots.txt
-│   └── sitemap.xml
+│   └── llms.txt                # AI search engine context & WebABC agency credits
 ├── src/
 │   ├── content/
 │   │   ├── config.ts           # Schema definitions for blog/events collections
-│   │   ├── blog/               # Markdown files for migrated blog posts
+│   │   ├── blog/               # Markdown files for 31 migrated blog posts
 │   │   └── events/             # Events content collection
 │   ├── components/
 │   │   ├── common/             # Header, Footer, SEO, Favicons
 │   │   ├── home/               # Hero, Intro, FloorPlans
 │   │   └── blog/               # Blog UI components
 │   ├── layouts/
-│   │   ├── BaseLayout.astro    # Root HTML layout with RTL & IRANSansWeb font
-│   │   └── BlogPost.astro      # Single post layout with Tailwind prose
+│   │   ├── BaseLayout.astro    # Root HTML layout with RTL, View Transitions & IRANSansX
+│   │   ├── BlogPost.astro      # Single post layout with Tailwind prose
+│   │   └── BlogListLayout.astro # Paginated blog post archive layout
 │   ├── pages/
 │   │   ├── index.astro
 │   │   ├── introduction.astro
 │   │   ├── features.astro
 │   │   └── blog/
 │   │       ├── index.astro
+│   │       ├── page/[page].astro               # Archive pagination routes
 │   │       ├── [year]/[month]/[id]/index.astro  # Matches exact legacy post URL structure
-│   │       ├── category/[cat]/index.astro       # Category archive routes
-│   │       ├── category/[cat]/page/[page].astro # Category pagination routes
-│   │       └── events/index.astro
+      ├── category/[cat]/index.astro       # Category archive routes
+      └── events/index.astro
 │   └── styles/
-│       ├── fonts.css           # Font-face declarations for IRANSansWeb
+│       ├── fonts.css           # Font-face declarations for IRANSansXFaNum-Regular
 │       └── global.css          # Tailwind directives & global overrides
-├── scripts/
-│   └── migrate-posts.js        # Automated migration script for legacy HTML posts
 ├── legacy_archive/             # Archived legacy HTML files & backup assets
 ├── astro.config.mjs
-├── tailwind.config.mjs
+├── wrangler.toml               # Cloudflare Pages deployment configuration
 ├── tsconfig.json
 └── package.json
 ```
 
 ---
 
-## 🛠️ Development & Deployment
-
-### Commands
+## 🛠️ Development & Deployment Commands
 
 | Command | Action |
 | :--- | :--- |
-| `npm install` | Install dependencies |
+| `npm install` | Install project dependencies |
 | `npm run dev` | Start local development server at `http://localhost:4321` |
 | `npm run build` | Build static production site output into `./dist` |
 | `npm run preview` | Preview production build locally |
-| `node scripts/migrate-posts.js` | Re-run batch migration script for HTML posts |
 
 ---
 
-## 🌐 SEO & Performance Highlights
+## 📄 License & Credits
 
-- **Lighthouse Ready**: Ultra-fast SSG load times with 0 unnecessary JS overhead.
-- **RTL First**: Built with `dir="rtl" lang="fa"` and Persian numeral typography support.
-- **SEO & OpenGraph Tags**: Automatic canonical URL mapping and OpenGraph metadata generation via `SEO.astro`.
-
----
-
-## 📄 License
-
-Internal repository for **Mehromah Qazvin Complex**. All rights reserved.
+- **Site Owner**: **Mehromah Qazvin Commercial & Administrative Complex** (مجتمع تجاری اداری مهروماه قزوین).
+- **Development & SEO**: **WebABC (وب آ ب ث)** — #1 Agency for Web Design & SEO in Qazvin (`https://webabc.ir`).
