@@ -1,8 +1,23 @@
 @import "tailwindcss";
-@import "./fonts.css";
+
+@font-face {
+  font-family: 'IRANSansWeb';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/IRANSansXFaNum-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IRANSansX';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/IRANSansXFaNum-Regular.woff2') format('woff2');
+}
 
 @theme {
-  --font-sans: 'IRANSansWeb', 'IRANSANS', system-ui, sans-serif;
+  --font-sans: 'IRANSansX', 'IRANSansWeb', system-ui, sans-serif;
 
   --color-primary-red: #ff0000;
   --color-dark-nav: #353535;
