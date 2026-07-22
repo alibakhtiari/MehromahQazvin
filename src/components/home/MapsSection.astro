@@ -11,18 +11,18 @@ const floorDetails = [
 ];
 
 const floorPlans = [
-  { thumb: '/assets/images/plan-minus1t.jpg', full: '/assets/images/plan-minus1.jpg', label: 'طبقه ۱-' },
-  { thumb: '/assets/images/plan-minus2t.jpg', full: '/assets/images/plan-minus2.jpg', label: 'طبقه ۲-' },
-  { thumb: '/assets/images/plan-1t.jpg', full: '/assets/images/plan-1.jpg', label: 'طبقه ۱+' },
-  { thumb: '/assets/images/plan-2t.jpg', full: '/assets/images/plan-2.jpg', label: 'طبقه ۲+' },
-  { thumb: '/assets/images/plan-gt.jpg', full: '/assets/images/plan-g.jpg', label: 'همکف' },
+  { thumbJpg: '/assets/images/plan-minus1t.jpg', thumbWebp: '/assets/images/plan-minus1t.webp', full: '/assets/images/plan-minus1.jpg', label: 'طبقه ۱-' },
+  { thumbJpg: '/assets/images/plan-minus2t.jpg', thumbWebp: '/assets/images/plan-minus2t.webp', full: '/assets/images/plan-minus2.jpg', label: 'طبقه ۲-' },
+  { thumbJpg: '/assets/images/plan-1t.jpg', thumbWebp: '/assets/images/plan-1t.webp', full: '/assets/images/plan-1.jpg', label: 'طبقه ۱+' },
+  { thumbJpg: '/assets/images/plan-2t.jpg', thumbWebp: '/assets/images/plan-2t.webp', full: '/assets/images/plan-2.jpg', label: 'طبقه ۲+' },
+  { thumbJpg: '/assets/images/plan-gt.jpg', thumbWebp: '/assets/images/plan-gt.webp', full: '/assets/images/plan-g.jpg', label: 'همکف' },
 ];
 ---
 
 <!-- Parallax Banner 2 -->
 <div
   class="relative py-24 text-center text-white parallax-bg border-y border-zinc-800"
-  style="background-image: url('/assets/images/2.jpg');"
+  style="background-image: url('/assets/images/2.webp'), url('/assets/images/2.jpg');"
 >
   <div class="absolute inset-0 bg-black/40"></div>
   <div class="relative z-10 space-y-3">
@@ -62,7 +62,18 @@ const floorPlans = [
               class="group relative cursor-pointer overflow-hidden rounded-xl border border-zinc-200 hover:border-red-600 transition-all shadow-md hover:shadow-xl map-thumb"
               data-full={plan.full}
             >
-              <img src={plan.thumb} alt={plan.label} class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" />
+              <picture>
+                <source srcset={plan.thumbWebp} type="image/webp" />
+                <img
+                  src={plan.thumbJpg}
+                  alt={plan.label}
+                  width="400"
+                  height="176"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </picture>
               <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-lg">
                 بزرگ‌نمایی {plan.label} 🔍
               </div>
@@ -84,7 +95,15 @@ const floorPlans = [
       class="absolute -top-10 left-0 text-white hover:text-red-500 text-3xl font-bold transition-colors"
       aria-label="بستن"
     >&times;</button>
-    <img id="lightbox-img" src="" alt="پلان طبقه" />
+    <img
+      id="lightbox-img"
+      src=""
+      alt="پلان طبقه"
+      width="800"
+      height="600"
+      loading="lazy"
+      decoding="async"
+    />
   </div>
 </div>
 

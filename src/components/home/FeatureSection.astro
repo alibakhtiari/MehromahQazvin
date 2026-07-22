@@ -10,7 +10,7 @@ const featuresList = [
 <!-- Parallax Banner 1 -->
 <div
   class="relative py-24 text-center text-white parallax-bg border-y border-zinc-800"
-  style="background-image: url('/assets/images/1.jpg');"
+  style="background-image: url('/assets/images/1.webp'), url('/assets/images/1.jpg');"
 >
   <div class="absolute inset-0 bg-black/40"></div>
   <div class="relative z-10 space-y-3">
@@ -27,7 +27,18 @@ const featuresList = [
       <!-- Image (Left Column in RTL) -->
       <div class="md:col-span-6">
         <div class="overflow-hidden rounded-xl shadow-2xl">
-          <img src="/assets/images/section-2.jpg" alt="امکانات مجتمع" class="w-full h-auto object-cover" />
+          <picture>
+            <source srcset="/assets/images/section-2.webp" type="image/webp" />
+            <img
+              src="/assets/images/section-2.jpg"
+              alt="امکانات مجتمع"
+              width="600"
+              height="400"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-auto object-cover"
+            />
+          </picture>
         </div>
       </div>
 

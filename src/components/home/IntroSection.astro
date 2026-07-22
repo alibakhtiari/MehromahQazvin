@@ -1,9 +1,9 @@
 ---
 const sliderImages = [
-  '/assets/images/sliders/1.jpg',
-  '/assets/images/sliders/2.jpg',
-  '/assets/images/sliders/3.jpg',
-  '/assets/images/sliders/4.jpg',
+  { jpg: '/assets/images/sliders/1.jpg', webp: '/assets/images/sliders/1.webp' },
+  { jpg: '/assets/images/sliders/2.jpg', webp: '/assets/images/sliders/2.webp' },
+  { jpg: '/assets/images/sliders/3.jpg', webp: '/assets/images/sliders/3.webp' },
+  { jpg: '/assets/images/sliders/4.jpg', webp: '/assets/images/sliders/4.webp' },
 ];
 ---
 
@@ -44,7 +44,19 @@ const sliderImages = [
               class={`absolute inset-0 transition-opacity duration-700 ease-in-out slider-slide ${idx === 0 ? 'opacity-100' : 'opacity-0'}`}
               data-index={idx}
             >
-              <img src={img} alt={`اسلاید ${idx + 1}`} class="w-full h-full object-cover" />
+              <picture>
+                <source srcset={img.webp} type="image/webp" />
+                <img
+                  src={img.jpg}
+                  alt={`اسلاید ${idx + 1}`}
+                  width="1280"
+                  height="720"
+                  loading={idx === 0 ? "eager" : "lazy"}
+                  fetchpriority={idx === 0 ? "high" : "low"}
+                  decoding="async"
+                  class="w-full h-full object-cover"
+                />
+              </picture>
             </div>
           ))}
 
@@ -68,17 +80,16 @@ const sliderImages = [
 
 <script>
   function initIntroSlider() {
-    const slider = document.getElementById('intro-slider');
-    if (!slider) return;
+    const slides = document.querySelectorAll('.slider-slide');
+    const dots = document.querySelectorAll('.slider-dot');
+    if (!slides.length) return;
 
-    const slides = slider.querySelectorAll('.slider-slide');
-    const dots = slider.querySelectorAll('.slider-dot');
-    let currentIndex = 0;
-    let timer: any = null;
+    let current = 0;
+    let intervalId: any;
 
     function goToSlide(index: number) {
-      slides.forEach((slide, idx) => {
-        if (idx === index) {
+      slides.forEach((slide, i) => {
+        if (i === index) {
           slide.classList.remove('opacity-0');
           slide.classList.add('opacity-100');
         } else {
@@ -87,8 +98,8 @@ const sliderImages = [
         }
       });
 
-      dots.forEach((dot, idx) => {
-        if (idx === index) {
+      dots.forEach((dot, i) => {
+        if (i === index) {
           dot.classList.add('bg-red-600', 'scale-110');
           dot.classList.remove('bg-white/60');
         } else {
@@ -97,23 +108,27 @@ const sliderImages = [
         }
       });
 
-      currentIndex = index;
+      current = index;
     }
 
     function nextSlide() {
-      const nextIndex = (currentIndex + 1) % slides.length;
-      goToSlide(nextIndex);
+      const next = (current + 1) % slides.length;
+      goToSlide(next);
     }
 
     function startAutoPlay() {
-      if (timer) clearInterval(timer);
-      timer = setInterval(nextSlide, 4000);
+      stopAutoPlay();
+      intervalId = setInterval(nextSlide, 4000);
+    }
+
+    function stopAutoPlay() {
+      if (intervalId) clearInterval(intervalId);
     }
 
     dots.forEach((dot) => {
-      dot.addEventListener('click', (e: any) => {
-        const idx = parseInt(e.target.getAttribute('data-target') || '0', 10);
-        goToSlide(idx);
+      dot.addEventListener('click', () => {
+        const target = parseInt(dot.getAttribute('data-target') || '0', 10);
+        goToSlide(target);
         startAutoPlay();
       });
     });
