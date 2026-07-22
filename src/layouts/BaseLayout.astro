@@ -1,0 +1,45 @@
+---
+import SEO from '../components/common/SEO.astro';
+import Header from '../components/common/Header.astro';
+import Footer from '../components/common/Footer.astro';
+import 'aos/dist/aos.css';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  pubDate?: string;
+  author?: string;
+}
+
+const { title, description, image, type, pubDate, author } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="dark">
+  <head>
+    <SEO title={title} description={description} image={image} type={type} pubDate={pubDate} author={author} />
+  </head>
+  <body class="bg-zinc-900 text-zinc-100 min-h-screen flex flex-col antialiased">
+    <Header />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      import AOS from 'aos';
+      function initAOS() {
+        AOS.init({
+          duration: 800,
+          once: true,
+          easing: 'ease-out-cubic',
+        });
+      }
+      initAOS();
+      document.addEventListener('astro:page-load', initAOS);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,117 @@
+---
+const navItems = [
+  { label: 'خانه', href: '/' },
+  { label: 'معرفی مجتمع', href: '/#intro' },
+  { label: 'امکانات مجتمع', href: '/#feature' },
+  { label: 'نقشه طبقات', href: '/#maps' },
+  { label: 'رویداد‌ها', href: '/blog/' },
+  { label: 'تماس با ما', href: '/#contact' },
+];
+
+const pathname = Astro.url.pathname;
+const isHome = pathname === '/' || pathname === '/index.html';
+---
+
+<header class="fixed top-0 left-0 right-0 w-full z-50 transition-all duration-200">
+  <div
+    id="nav-div"
+    data-is-home={isHome ? 'true' : 'false'}
+    class={`w-full transition-all duration-200 px-4 lg:px-12 py-2 flex items-center justify-between ${
+      isHome ? 'bg-transparent' : 'bg-[#353535] shadow-[0_1px_10px_#353535]'
+    }`}
+  >
+    <!-- Logo & Nav Wrap (RTL Right side) -->
+    <div class="flex items-center gap-6 lg:gap-12">
+      <a href="/" class="block shrink-0">
+        <img id="logo" src="/assets/logo/logo-red.png" alt="مهروماه" class="h-10 sm:h-12 w-auto py-1" />
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:block">
+        <ul class="flex items-center m-0 p-0 list-none">
+          {navItems.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="flex items-center justify-center px-5 h-[60px] text-[17px] font-medium text-white hover:bg-[#f00] hover:text-white transition-colors text-center"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Mobile Menu Toggle Button (Left side in RTL) -->
+    <button
+      id="nav-toggle"
+      type="button"
+      class="md:hidden p-3 text-white hover:text-red-500 transition-colors focus:outline-none"
+      aria-label="منوی اصلی"
+    >
+      <div class="space-y-1.5 w-7">
+        <span class="block w-full h-1 bg-white rounded"></span>
+        <span class="block w-full h-1 bg-white rounded"></span>
+        <span class="block w-full h-1 bg-white rounded"></span>
+      </div>
+    </button>
+  </div>
+
+  <!-- Mobile Collapsible Menu -->
+  <div id="nav-collapse" class="hidden md:hidden bg-[#353535] text-white border-t border-zinc-700 shadow-2xl">
+    <ul class="flex flex-col m-0 p-0 list-none">
+      {navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class="block px-6 py-3.5 text-[16px] text-white font-medium hover:bg-[#f00] transition-colors border-b border-zinc-700/50"
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>
+
+<script>
+  function initStickyNavbar() {
+    const navDiv = document.getElementById('nav-div');
+    const toggleBtn = document.getElementById('nav-toggle');
+    const navCollapse = document.getElementById('nav-collapse');
+    const isHome = navDiv?.getAttribute('data-is-home') === 'true';
+
+    function checkScroll() {
+      if (!isHome) return; // Keep fixed dark bg on non-home pages
+
+      if (window.scrollY > 30) {
+        navDiv?.classList.add('bg-[#353535]', 'shadow-[0_1px_10px_#353535]');
+        navDiv?.classList.remove('bg-transparent');
+      } else {
+        navDiv?.classList.remove('bg-[#353535]', 'shadow-[0_1px_10px_#353535]');
+        navDiv?.classList.add('bg-transparent');
+      }
+    }
+
+    if (isHome) {
+      window.addEventListener('scroll', checkScroll);
+      checkScroll();
+    }
+
+    if (toggleBtn && navCollapse) {
+      toggleBtn.addEventListener('click', () => {
+        navCollapse.classList.toggle('hidden');
+      });
+
+      navCollapse.querySelectorAll('a').forEach((a) => {
+        a.addEventListener('click', () => {
+          navCollapse.classList.add('hidden');
+        });
+      });
+    }
+  }
+
+  initStickyNavbar();
+  document.addEventListener('astro:page-load', initStickyNavbar);
+</script>

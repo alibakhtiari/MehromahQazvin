@@ -1,0 +1,190 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  pubDate?: string;
+  author?: string;
+  category?: string;
+  canonicalURL?: URL | string;
+}
+
+const {
+  title = "مجتمع تجاری و پارکینگ طبقاتی مهروماه قزوین",
+  description = "مجتمع تجاری مهروماه قزوین شامل ۵ طبقه تجاری با بیش از ۳۰۰ واحدتجاری ، ۷ طبقه پارکینگ سر پوشیده با ظرفیت ۹۰۹ خودرو و فودکورت در قلب تجاری قزوین واقع شده است.",
+  image = "/assets/images/Mehromah.jpg",
+  type = "website",
+  pubDate,
+  author = "مدیریت مهروماه",
+  category,
+  canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://mehromahqazvin.ir'),
+} = Astro.props;
+
+const siteTitle = title.includes("مهروماه") ? title : `${title} - مجتمع تجاری مهروماه قزوین`;
+const fullImageUrl = new URL(image, Astro.site || 'https://mehromahqazvin.ir').href;
+
+// ShoppingCenter Schema (Local Business / GEO Entity)
+const shoppingCenterSchema = {
+  "@context": "https://schema.org",
+  "@type": "ShoppingCenter",
+  "name": "مجتمع تجاری مهروماه قزوین - Mehr o Mah",
+  "alternateName": ["مهروماه قزوین", "مرکز خرید مهروماه", "پارکینگ طبقاتی مهروماه"],
+  "image": "https://mehromahqazvin.ir/assets/images/Mehromah.jpg",
+  "@id": "https://mehromahqazvin.ir/#shoppingcenter",
+  "url": "https://mehromahqazvin.ir",
+  "telephone": "+982833356206",
+  "priceRange": "IRR",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "خیابان خیام مجتمع تجاری مهر و ماه",
+    "addressLocality": "قزوین",
+    "addressRegion": "استان قزوین",
+    "postalCode": "34136",
+    "addressCountry": "IR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 36.2742302,
+    "longitude": 50.0080036
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "06:00",
+    "closes": "24:00"
+  },
+  "sameAs": [
+    "https://www.instagram.com/mehromahqazvin/"
+  ]
+};
+
+// Breadcrumb Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "خانه",
+      "item": "https://mehromahqazvin.ir/"
+    },
+    ...(Astro.url.pathname !== '/' ? [
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": siteTitle,
+        "item": canonicalURL.toString()
+      }
+    ] : [])
+  ]
+};
+
+// BlogPosting Schema for articles
+const articleSchema = type === 'article' ? {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "image": [fullImageUrl],
+  "datePublished": pubDate || "2017-07-01",
+  "author": {
+    "@type": "Organization",
+    "name": author,
+    "url": "https://mehromahqazvin.ir"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "مجتمع تجاری مهروماه قزوین",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://mehromahqazvin.ir/assets/logo/logo-red.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalURL.toString()
+  }
+} : null;
+
+// FAQ Schema for AEO (Answer Engine Optimization)
+const faqSchema = Astro.url.pathname === '/' || Astro.url.pathname === '/index.html' ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "آدرس مجتمع تجاری مهروماه قزوین کجاست؟",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "مجتمع تجاری مهروماه قزوین در مرکز شهر قزوین در تقاطع خیابان‌های خیام و بوعلی شرقی واقع شده است."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ساعت کاری پارکینگ طبقاتی مهروماه قزوین چگونه است؟",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "پارکینگ مسقف و عمومی مجتمع مهروماه همه روزه از ساعت ۶ صبح الی ۱۲ شب دایر می‌باشد."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "مجتمع تجاری مهروماه دارای چه امکاناتی است؟",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "این مجتمع در ۱۲ طبقه شامل ۵ طبقه تجاری با بیش از ۳۰۰ واحد، ۷ طبقه پارکینگ سرپوشیده، فودکورت، مهدکودک، کافی‌شاپ و کافه هنرمندان است."
+      }
+    }
+  ]
+} : null;
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Primary Meta Tags -->
+<title>{siteTitle}</title>
+<meta name="title" content={siteTitle} />
+<meta name="description" content={description} />
+<meta name="keywords" content="مجتمع تجاری مهروماه قزوین, مرکز خرید قزوین, پارکینگ طبقاتی خیام قزوین, فودکورت مهروماه, پاساژ مهروماه قزوین" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+<!-- GEO Meta Tags (Generative & Regional Engine Optimization) -->
+<meta name="geo.region" content="IR-02" />
+<meta name="geo.placename" content="قزوین" />
+<meta name="geo.position" content="36.2742302;50.0080036" />
+<meta name="ICBM" content="36.2742302, 50.0080036" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content="مجتمع تجاری مهروماه قزوین" />
+<meta property="og:locale" content="fa_IR" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={siteTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={fullImageUrl} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={siteTitle} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={fullImageUrl} />
+
+<!-- Structured Data (JSON-LD) for Search, AEO, and GEO -->
+<script type="application/ld+json" set:html={JSON.stringify(shoppingCenterSchema)}></script>
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+{articleSchema && <script type="application/ld+json" set:html={JSON.stringify(articleSchema)}></script>}
+{faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>}

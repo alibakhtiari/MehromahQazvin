@@ -1,0 +1,63 @@
+---
+const featuresList = [
+  'مساحت زمین ۳۲۲۵ مترمربع',
+  'زیربنای کل ۴۰،۶۷۰ مترمربع',
+  'بیش از ۳۰۰ واحد تجاری',
+  'بیش از ۹۰۰ واحد پارکینگ',
+];
+---
+
+<!-- Parallax Banner 1 -->
+<div
+  class="relative py-24 text-center text-white parallax-bg border-y border-zinc-800"
+  style="background-image: url('/assets/images/1.jpg');"
+>
+  <div class="absolute inset-0 bg-black/40"></div>
+  <div class="relative z-10 space-y-3">
+    <h2 class="text-3xl sm:text-4xl font-bold text-white">امکانات مجتمع</h2>
+    <h3 class="text-xl sm:text-2xl font-bold text-red-500">معرفی امکانات مجموعه</h3>
+  </div>
+</div>
+
+<!-- Feature Section -->
+<section id="feature" class="py-16 sm:py-24 bg-white text-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+      
+      <!-- Image (Left Column in RTL) -->
+      <div class="md:col-span-6">
+        <div class="overflow-hidden rounded-xl shadow-2xl">
+          <img src="/assets/images/section-2.jpg" alt="امکانات مجتمع" class="w-full h-auto object-cover" />
+        </div>
+      </div>
+
+      <!-- Text & Bullet List (Right Column in RTL) -->
+      <div class="md:col-span-6 space-y-6 text-justify">
+        <h2 class="text-3xl font-bold text-center md:text-right text-zinc-900">امکانات مجتمع</h2>
+
+        <!-- Separator Flower Line -->
+        <div class="separator-line-flower">
+          <div class="line line-left"></div>
+          <div class="line line-right"></div>
+          <div class="star">❋</div>
+        </div>
+
+        <ul class="space-y-3 pr-6 text-base font-medium text-zinc-700 list-disc marker:text-red-600">
+          {featuresList.map((item) => (
+            <li class="text-lg leading-relaxed">{item}</li>
+          ))}
+        </ul>
+
+        <div class="pt-4 text-center md:text-right">
+          <a
+            href="/features/"
+            class="inline-block border-b-2 border-red-600 text-red-600 font-semibold text-base hover:text-zinc-900 hover:border-zinc-900 transition-colors pb-1"
+          >
+            جزئیات بیشتر
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

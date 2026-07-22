@@ -1,0 +1,35 @@
+---
+const floors = [
+  { id: 'p2', name: 'پارکینگ -۲', desc: 'پارکینگ مسقف با سیستم هوشمند هدایت خودرو', img: '/assets/images/plan-p2.jpg' },
+  { id: 'p1', name: 'پارکینگ -۱', desc: 'پارکینگ مسقف طبقه اول منفی', img: '/assets/images/plan-p1.jpg' },
+  { id: 'g', name: 'طبقه همکف', desc: 'واحدهای تجاری، برندهای معتبر و طلا و جواهر', img: '/assets/images/plan-g.jpg' },
+  { id: 'f1', name: 'طبقه اول', desc: 'پوشاک، کیف و کفش، لوازم آرایشی و بهداشتی', img: '/assets/images/plan-1.jpg' },
+  { id: 'f2', name: 'طبقه دوم', desc: 'فودکورت، رستوران سنتی، کافی‌شاپ و شهربازی سرپوشیده', img: '/assets/images/plan-2.jpg' },
+  { id: 'f3', name: 'طبقات اداری', desc: 'دفتر کار شرکتی، مطب‌ها و نمایندگی‌ها', img: '/assets/images/plan-3.jpg' },
+];
+---
+
+<section class="py-20 bg-slate-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center space-y-4 mb-16">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">پلان طبقات مجتمع مهروماه</h2>
+      <p class="text-slate-400 text-base max-w-2xl mx-auto">
+        راهنمای کامل طبقات مجتمع تجاری و اداری مهروماه قزوین جهت سهولت دسترسی مشتریان و صاحبان مشاغل
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {floors.map((floor) => (
+        <div class="group bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-brand-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/10">
+          <div class="p-6 space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors">{floor.name}</h3>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-700 text-slate-300">نقشه طبقه</span>
+            </div>
+            <p class="text-sm text-slate-400 leading-relaxed">{floor.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
