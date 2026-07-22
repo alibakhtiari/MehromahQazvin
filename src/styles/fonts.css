@@ -1,11 +1,15 @@
 @font-face {
   font-family: 'IRANSansWeb';
   font-style: normal;
-  font-weight: normal;
-  src: url('/assets/fonts/eot/IRANSansWeb(FaNum).eot');
-  src: url('/assets/fonts/eot/IRANSansWeb(FaNum).eot?#iefix') format('embedded-opentype'),
-       url('/assets/fonts/woff2/IRANSansWeb(FaNum).woff2') format('woff2'),
-       url('/assets/fonts/woff/IRANSansWeb(FaNum).woff') format('woff'),
-       url('/assets/fonts/ttf/IRANSansWeb(FaNum).ttf') format('truetype');
+  font-weight: 400;
   font-display: swap;
+  src: url('/IRANSansXFaNum-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IRANSansX';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/IRANSansXFaNum-Regular.woff2') format('woff2');
 }
