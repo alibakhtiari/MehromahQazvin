@@ -1,0 +1,37 @@
+---
+import BlogListLayout from '@/layouts/BlogListLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const categories = [...new Set(posts.map(p => p.data.category).filter(Boolean))];
+  
+  if (!categories.includes('ev')) {
+    categories.push('ev');
+  }
+
+  return categories.map((cat) => ({
+    params: { cat },
+  }));
+}
+
+const { cat } = Astro.params;
+const allPosts = await getCollection('blog');
+
+const filteredPosts = allPosts.filter(p => {
+  if (!cat || cat === 'ev') return true;
+  const c = p.data.category;
+  return c === cat || decodeURIComponent(cat) === c;
+}).sort(
+  (a, b) => (b.data.pubDate || '').localeCompare(a.data.pubDate || '')
+);
+---
+
+<BlogListLayout
+  title={`دسته‌بندی ${cat} - مجتمع تجاری مهروماه قزوین`}
+  description={`بایگانی مطالب دسته‌بندی ${cat} مجتمع تجاری مهروماه قزوین.`}
+  posts={filteredPosts}
+  baseUrl={`/blog/category/${cat}/`}
+  currentPage={1}
+  totalPages={Math.max(1, Math.ceil(filteredPosts.length / 10))}
+/>

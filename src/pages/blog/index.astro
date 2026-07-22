@@ -1,0 +1,17 @@
+---
+import BlogListLayout from '@/layouts/BlogListLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => (b.data.pubDate || '').localeCompare(a.data.pubDate || '')
+);
+---
+
+<BlogListLayout
+  title="مجتمع تجاری مهروماه قزوین - مرکز خرید و پارکینگ طبقاتی"
+  description="آرشیو کامل اخبار، رویدادها و اطلاعیه‌های مجتمع تجاری اداری مهروماه قزوین."
+  posts={posts}
+  baseUrl="/blog/"
+  currentPage={1}
+  totalPages={4}
+/>
