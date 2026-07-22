@@ -6,6 +6,9 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://mehromahqazvin.ir',
   compressHTML: true,
+  prefetch: {
+    prefetchAll: true,
+  },
   integrations: [sitemap()],
   redirects: {
     '/introduction.html': '/introduction/',
@@ -16,6 +19,7 @@ export default defineConfig({
   },
   build: {
     format: 'directory',
+    inlineStylesheets: 'always',
   },
   trailingSlash: 'always',
 });
