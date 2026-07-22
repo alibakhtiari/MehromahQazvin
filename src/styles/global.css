@@ -1,0 +1,101 @@
+@import "tailwindcss";
+@import "./fonts.css";
+
+@theme {
+  --font-sans: 'IRANSansWeb', 'IRANSANS', system-ui, sans-serif;
+
+  --color-primary-red: #ff0000;
+  --color-dark-nav: #353535;
+  --color-dark-bg: #222222;
+  --color-dark-footer: #262626;
+  --color-text-main: #333333;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    direction: rtl;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Custom Parallax & Section Helpers */
+.parallax-bg {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+@media (max-width: 768px) {
+  .parallax-bg {
+    background-attachment: scroll;
+  }
+}
+
+/* Legacy Separator Decorative Line */
+.separator-line-flower {
+  position: relative;
+  text-align: center;
+  margin: 20px auto 30px auto;
+  width: 100%;
+  max-width: 300px;
+}
+.separator-line-flower .line {
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background-color: #ff0000;
+}
+.separator-line-flower .line-left {
+  left: 0;
+}
+.separator-line-flower .line-right {
+  right: 0;
+}
+.separator-line-flower .star {
+  color: #ff0000;
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* Vanilla Lightbox Overlay */
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.lightbox-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.lightbox-modal img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 8px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Down arrow pulsing indicator */
+@keyframes bounce-down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+.animate-bounce-down {
+  animation: bounce-down 2s infinite;
+}
