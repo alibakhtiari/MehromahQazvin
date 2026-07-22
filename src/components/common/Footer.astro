@@ -17,13 +17,13 @@ const currentShamsiYear = new Date().toLocaleDateString('fa-IR', { year: 'numeri
   <div class="container mx-auto px-4 py-6">
     <div class="row">
       <div class="full-width copyrights text-center space-y-2">
-        <p>© ۱۳۹۷ - {currentShamsiYear} تمامی حقوق مادی و معنوی وب سایت متعلق به مجتمع تجاری مهروماه می باشد .</p>
-        <div class="white flex items-center justify-center gap-1.5 text-sm text-zinc-300">
+        <p class="text-zinc-200 font-medium text-sm leading-relaxed">© ۱۳۹۷ - {currentShamsiYear} تمامی حقوق مادی و معنوی وب سایت متعلق به مجتمع تجاری مهروماه می باشد .</p>
+        <div class="white flex items-center justify-center gap-1.5 text-sm text-zinc-200">
           <span>کد نویسی با</span>
           <div class="code flex-shrink-0"></div>
           <span>توسط</span>
           <!-- Crisp Symmetrical Pulsing Red Heart -->
-          <svg class="w-4 h-4 fill-red-500 animate-pulse inline-block align-middle mx-0.5 flex-shrink-0" viewBox="0 0 24 24">
+          <svg class="w-4 h-4 fill-red-400 animate-pulse inline-block align-middle mx-0.5 flex-shrink-0" viewBox="0 0 24 24">
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
           </svg>
           <a
@@ -31,7 +31,7 @@ const currentShamsiYear = new Date().toLocaleDateString('fa-IR', { year: 'numeri
             target="_blank"
             rel="noopener"
             title="طراحی سایت و سئو - تیم وب آ ب ث"
-            class="text-red-500 font-bold hover:underline"
+            class="text-red-400 font-bold hover:text-red-300 hover:underline transition-colors"
           >
             تیم طراحی سایت وب آ ب ث
           </a>
@@ -48,6 +48,7 @@ footer {
     font-size: 14px;
     text-align: center;
     background-color: #262626;
+    color: #e4e4e7;
 }
 
 .copyright-area {
@@ -58,95 +59,60 @@ footer {
     position: absolute;
     top: 0;
     right: 50%;
-    margin-right: -96px;
-    margin-top: -50px;
+    transform: translate(50%, -100%);
 }
 
-.copyright-area svg path {
-    fill: #262626;
-}
-
-.btn--top {
+.copyright-area .btn--top {
     position: absolute;
-    top: -12px;
+    top: 0;
     right: 50%;
-    transform: translateX(50%);
+    transform: translate(50%, -100%);
+    z-index: 10;
 }
 
-.btn--top_text {
+.copyright-area .btn--top_text {
+    position: relative;
     display: block;
-    position: absolute;
-    top: 12px;
-    right: 50%;
-    width: 60px;
-    height: 60px;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0;
-    color: #fff;
-    transform: translateX(50%) translateY(-30%);
+    width: 61px;
+    height: 61px;
 }
 
-.btn--top_text .btn__arrow {
-    display: block;
+.btn__arrow {
     position: absolute;
+    top: 15px;
     right: 50%;
-    height: 10px;
-    width: 10px;
-    border-right: 2px solid #fff;
+    width: 12px;
+    height: 12px;
     border-top: 2px solid #fff;
-    transform: translateX(50%) rotate(-45deg);
+    border-right: 2px solid #fff;
+    transform: translate(50%, 0) rotate(-45deg);
+    transition: all 0.2s ease-in-out;
 }
 
-.btn--top_text .btn__arrow--top {
-    top: 2px;
+.btn__arrow--bottom {
+    top: 22px;
 }
 
-.btn--top_text .btn__arrow--bottom {
-    top: 8px;
+.btn--top_text:hover .btn__arrow--top {
+    transform: translate(50%, -3px) rotate(-45deg);
+}
+
+.btn--top_text:hover .btn__arrow--bottom {
+    transform: translate(50%, 3px) rotate(-45deg);
+}
+
+.copyrights p {
+    margin: 0;
+    color: #e4e4e7 !important;
 }
 
 .code {
+    width: 18px;
+    height: 18px;
     display: inline-block;
-    height: 0.75rem;
-    margin: 0 0.25rem;
-    position: relative;
-    width: 0.75rem;
-    border: 0.125rem solid #4169e1;
-    transform: translateY(0.0625rem) scale(1.33) rotate(45deg);
-}
-
-.code::before,
-.code::after {
-    content: "";
-    display: block;
-    position: absolute;
-    height: 0.375rem;
-    width: 0.375rem;
-    background-color: #262626;
-}
-
-.code::before {
-    top: -0.16rem;
-    left: -0.16rem;
-}
-
-.code::after {
-    right: -0.16rem;
-    bottom: -0.16rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e4e4e7'%3E%3Cpath d='M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
 }
 </style>
-
-<script>
-  const btn = document.getElementById('scroll-to-top');
-  if (btn) {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-  }
-</script>
