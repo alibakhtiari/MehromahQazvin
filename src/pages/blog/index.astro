@@ -2,16 +2,21 @@
 import BlogListLayout from '@/layouts/BlogListLayout.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog')).sort(
+const allPosts = await getCollection('blog');
+const posts = allPosts.sort(
   (a, b) => (b.data.pubDate || '').localeCompare(a.data.pubDate || '')
 );
+
+const pageSize = 10;
+const pagePosts = posts.slice(0, pageSize);
+const totalPages = Math.ceil(posts.length / pageSize);
 ---
 
 <BlogListLayout
   title="مجتمع تجاری مهروماه قزوین - مرکز خرید و پارکینگ طبقاتی"
   description="آرشیو کامل اخبار، رویدادها و اطلاعیه‌های مجتمع تجاری اداری مهروماه قزوین."
-  posts={posts}
+  posts={pagePosts}
   baseUrl="/blog/"
   currentPage={1}
-  totalPages={4}
+  totalPages={totalPages}
 />
