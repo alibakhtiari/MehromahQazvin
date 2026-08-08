@@ -1,0 +1,141 @@
+---
+const sliderImages = [
+  { jpg: '/assets/images/sliders/1.jpg', webp: '/assets/images/sliders/1.webp' },
+  { jpg: '/assets/images/sliders/2.jpg', webp: '/assets/images/sliders/2.webp' },
+  { jpg: '/assets/images/sliders/3.jpg', webp: '/assets/images/sliders/3.webp' },
+  { jpg: '/assets/images/sliders/4.jpg', webp: '/assets/images/sliders/4.webp' },
+];
+---
+
+<section id="intro" class="py-16 sm:py-24 bg-white text-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+      
+      <!-- Text Content (Left Column in RTL) -->
+      <div data-aos="fade-right" class="md:col-span-5 space-y-6 text-justify">
+        <h2 class="text-3xl font-bold text-center md:text-right text-zinc-900">معرفی مجتمع</h2>
+
+        <!-- Separator Flower Line -->
+        <div class="separator-line-flower">
+          <div class="line line-left"></div>
+          <div class="line line-right"></div>
+          <div class="star">❋</div>
+        </div>
+
+        <p class="text-base text-zinc-700 leading-relaxed">
+          مجتمع تجاری مهروماه قروین درزمینی به مساحت ۳۲۲۵ متر مربع با زیر بنای کل ۴۰۶۷۷/۱۵ متر مربع که در ۵ طبقه تجاری با بیش از ۳۰۰ واحدتجاری و ۷ طبقه پارکینگ سر پوشیده با ظرفیت ۹۰۹ خودرو از طبقه سوم الی نهم را در برمی گیرد. مجتمع تجاری مهر و ماه با توجه به موقعیت مکانی خود دارای دو درب ورودی می باشد که یک درب از خیابان خیام و دیگری از سمت خیابان بوعلی شرقی می باشد.
+        </p>
+
+        <div class="pt-4 text-center md:text-right">
+          <a
+            href="/introduction/"
+            class="inline-block border-b-2 border-red-600 text-red-600 font-semibold text-base hover:text-zinc-900 hover:border-zinc-900 transition-colors pb-1"
+          >
+            توضیحات بیشتر
+          </a>
+        </div>
+      </div>
+
+      <!-- Slider Container (Right Column in RTL) -->
+      <div data-aos="fade-left" class="md:col-span-7">
+        <div id="intro-slider" class="relative overflow-hidden rounded-xl shadow-2xl aspect-[4/3] bg-zinc-900">
+          {sliderImages.map((img, idx) => (
+            <div
+              class={`absolute inset-0 transition-opacity duration-700 ease-in-out slider-slide ${idx === 0 ? 'opacity-100' : 'opacity-0'}`}
+              data-index={idx}
+            >
+              <picture>
+                <source srcset={img.webp} type="image/webp" />
+                <img
+                  src={img.jpg}
+                  alt={`اسلاید ${idx + 1}`}
+                  width="1280"
+                  height="720"
+                  loading={idx === 0 ? "eager" : "lazy"}
+                  fetchpriority={idx === 0 ? "high" : "low"}
+                  decoding="async"
+                  class="w-full h-full object-cover"
+                />
+              </picture>
+            </div>
+          ))}
+
+          <!-- Slider Navigation Dots -->
+          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+            {sliderImages.map((_, idx) => (
+              <button
+                type="button"
+                class={`w-3 h-3 rounded-full transition-all slider-dot ${idx === 0 ? 'bg-red-600 scale-110' : 'bg-white/60 hover:bg-white'}`}
+                data-target={idx}
+                aria-label={`اسلاید ${idx + 1}`}
+              ></button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function initIntroSlider() {
+    const slides = document.querySelectorAll('.slider-slide');
+    const dots = document.querySelectorAll('.slider-dot');
+    if (!slides.length) return;
+
+    let current = 0;
+    let intervalId: any;
+
+    function goToSlide(index: number) {
+      slides.forEach((slide, i) => {
+        if (i === index) {
+          slide.classList.remove('opacity-0');
+          slide.classList.add('opacity-100');
+        } else {
+          slide.classList.remove('opacity-100');
+          slide.classList.add('opacity-0');
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        if (i === index) {
+          dot.classList.add('bg-red-600', 'scale-110');
+          dot.classList.remove('bg-white/60');
+        } else {
+          dot.classList.remove('bg-red-600', 'scale-110');
+          dot.classList.add('bg-white/60');
+        }
+      });
+
+      current = index;
+    }
+
+    function nextSlide() {
+      const next = (current + 1) % slides.length;
+      goToSlide(next);
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      intervalId = setInterval(nextSlide, 4000);
+    }
+
+    function stopAutoPlay() {
+      if (intervalId) clearInterval(intervalId);
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const target = parseInt(dot.getAttribute('data-target') || '0', 10);
+        goToSlide(target);
+        startAutoPlay();
+      });
+    });
+
+    startAutoPlay();
+  }
+
+  initIntroSlider();
+  document.addEventListener('astro:page-load', initIntroSlider);
+</script>

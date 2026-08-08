@@ -1,137 +1,92 @@
-# مجتمع تجاری مهروماه قزوین
+# 🏢 Mehromah Qazvin Commercial Complex (مجتمع تجاری اداری مهروماه قزوین)
 
-وب‌سایت رسمی مجتمع تجاری و پارکینگ طبقاتی مهروماه قزوین - یک مرکز خرید مدرن در قلب شهر قزوین.
+Welcome to the modernized codebase of **Mehromah Qazvin Commercial & Administrative Complex** (مجتمع تجاری اداری مهروماه قزوین).
 
-## 🏢 درباره پروژه
-
-مجتمع تجاری مهروماه یکی از بزرگ‌ترین مراکز خرید استان قزوین است که در زمینی به مساحت ۳۲۲۵ متر مربع ساخته شده است. این مجتمع با زیربنای کل ۴۰۶۷۷ متر مربع شامل:
-
-- **۵ طبقه تجاری** با بیش از ۳۰۰ واحد تجاری متنوع
-- **۷ طبقه پارکینگ سرپوشیده** با ظرفیت ۹۰۹ خودرو
-- **موقعیت مکانی عالی** در خیابان خیام قزوین
-
-## 🌐 مشخصات فنی وب‌سایت
-
-### تکنولوژی‌های استفاده شده
-- **HTML5** - ساختار سایت
-- **CSS3** - استایل‌دهی و انیمیشن‌ها
-- **JavaScript** - تعاملات کاربری
-- **Responsive Design** - طراحی واکنش‌گرا برای تمامی دستگاه‌ها
-
-### ویژگی‌های فنی
-- **RTL کامل** - طراحی کاملاً راست‌به-چپ برای زبان فارسی
-- **Lazy Loading** - بارگذاری تنبل تصاویر برای بهینه‌سازی سرعت
-- **Animations** - انیمیشن‌های حرفه‌ای با AOS و CSS3
-- **SEO Optimized** - بهینه‌سازی شده برای موتورهای جستجو
-- **Schema Markup** - استفاده از داده‌های ساختاریافته برای بهبود SEO
-
-### کتابخانه‌های استفاده شده
-- **AOS (Animate On Scroll)** - انیمیشن‌های اسکرول
-- **LazyLoad** - بارگذاری تنبل تصاویر
-- **Peppermint** - اسلایدر تصاویر
-- **Responsive Nav** - منوی ناوبری واکنش‌گرا
-- **FastClick** - حذف تأخیر ۳۰۰ms در دستگاه‌های لمسی
-
-## 📁 ساختار پروژه
-
-```
-mehromah/
-├── index.html                 # صفحه اصلی
-├── introduction.html          # صفحه معرفی کامل
-├── features.html             # صفحه امکانات
-├── blog/                     # بخش وبلاگ و رویدادها
-├── assets/
-│   ├── css/
-│   │   └── style.css         # فایل‌های استایل
-│   ├── js/
-│   │   └── main.js          # فایل‌های جاوااسکریپت
-│   ├── images/              # تصاویر سایت
-│   ├── fonts/               # فونت‌های IRANSans
-│   └── logo/                # لوگوهای سایت
-├── .htaccess                # تنظیمات سرور
-├── robots.txt               # تنظیمات خزنده‌ها
-└── site.webmanifest         # PWA manifest
-```
-
-## 🎯 بخش‌های اصلی سایت
-
-### 1. صفحه اصلی
-- **Hero Section** با تصویر پس‌زمینه پارالکس
-- **معرفی مجتمع** با اسلایدر تصاویر
-- **امکانات مجتمع** با لیست ویژگی‌ها
-- **نقشه طبقات** با تصاویر قابل بزرگ‌نمایی
-- **تماس با ما** با فرم ارتباطی
-
-### 2. طبقات مجتمع
-- **طبقه ۳ تا ۹**: پارکینگ مسقف
-- **طبقه ۳+**: فود کورت
-- **طبقه ۲+**: پوشاک، کیف و کفش
-- **طبقه ۱+**: تلفن همراه و لوازم الکترونیکی
-- **طبقه همکف**: طلا و جواهر، ساعت و عینک
-- **طبقه ۱-**: کالاهای لوکس، لوستر، لوازم ورزشی
-- **طبقه ۲-**: لوازم آشپزخانه، هایپرمارکت
-- **طبقه ۳-**: انباری‌ها
-
-## 📱 ویژگی‌های واکنش‌گرا
-
-سایت به‌طور کامل برای تمامی دستگاه‌ها بهینه شده است:
-- **دسکتاپ** (۱۲۰۰px و بالاتر)
-- **تبلت** (۷۶۸px تا ۹۹۱px)
-- **موبایل** (۳۲۰px تا ۷۶۷px)
-
-## 🔍 بهینه‌سازی SEO
-
-### متا تگ‌ها
-- **Title** و **Description** بهینه برای موتورهای جستجو
-- **Open Graph** برای شبکه‌های اجتماعی
-- **Twitter Cards** برای توییتر
-- **Schema.org** برای داده‌های ساختاریافته
-
-### موقعیت مکانی
-- **Geo-coordinates**: 36.2742302, 50.0080036
-- **آدرس کامل**: خیابان خیام، مجتمع تجاری مهر و ماه، قزوین، ایران
-
-## 📞 اطلاعات تماس
-
-- **تلفن**: ۰۲۸-۳۳۳۵۶۲۰۶
-- **ایمیل**: info@mehromahqazvin.ir
-- **آدرس**: خیابان خیام، مجتمع تجاری مهر و ماه، قزوین
-- **ساعت کار**: ۶ صبح تا ۱۲ شب
-
-## 📱 شبکه‌های اجتماعی
-
-- **اینستاگرام**: [@mehromahqazvin](https://www.instagram.com/mehromahqazvin/)
-
-## 🚀 نحوه اجرا
-
-برای اجرای پروژه به صورت محلی:
-
-1. کلون کردن ریپوزیتوری:
-```bash
-git clone https://github.com/alibakhtiari/Mehromah.git
-```
-
-2. باز کردن فایل `index.html` در مرورگر
-
-یا برای اجرا با سرور محلی:
-```bash
-# با Python
-python -m http.server 8000
-
-# با Node.js
-npx serve .
-```
-
-## 🎨 طراحی و توسعه
-
-**طراحی و توسعه توسط**: تیم وب آ ب ث  
-**سال توسعه**: ۲۰۱۸  
-**آدرس تیم توسعه**: [webabc.ir](http://webabc.ir)
-
-## 📄 مجوز
-
-تمامی حقوق مادی و معنوی این وب‌سایت متعلق به مجتمع تجاری مهروماه می‌باشد.
+This project is a high-performance, modern static site built with **Astro**, **Tailwind CSS v4**, **View Transitions**, and **JSON-LD Structured Data**.
 
 ---
 
-برای اطلاعات بیشتر به وب‌سایت رسمی مراجعه کنید: [mehromahqazvin.ir](https://mehromahqazvin.ir)
+## ⚡ Tech Stack & Architecture Highlights
+
+- **Framework**: [Astro v5](https://astro.build/) (Static Site Generation / SSG mode)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Transitions**: Native Astro `<ClientRouter />` View Transitions for instant SPA-like page navigation
+- **Content Management**: Astro Content Collections (Markdown with Zod schema validation)
+- **Typography**: Single high-performance `IRANSansXFaNum-Regular.woff2` Persian font with preloading
+- **SEO & AEO**: Full OpenGraph, ShoppingCenter + BlogPosting JSON-LD schemas, and `llms.txt` AI Search engine optimization
+- **Deployment**: Static Site Hosting (Cloudflare Pages, Vercel, or Nginx)
+
+---
+
+## 🎯 Key Architecture Features & URL Parity
+
+- **Strict Directory-Based Routing**: Configured `build.format: 'directory'` in `astro.config.mjs` to maintain 100% 1:1 URL parity with legacy SEO indexes:
+  - `/` &rarr; `dist/index.html`
+  - `/blog/` &rarr; `dist/blog/index.html`
+  - `/blog/2021/05/2686/` &rarr; `dist/blog/2021/05/2686/index.html`
+  - `/blog/category/ev/` &rarr; `dist/blog/category/ev/index.html`
+  - `/blog/category/ev/page/2/` &rarr; `dist/blog/category/ev/page/2/index.html`
+  - `/blog/events/` &rarr; `dist/blog/events/index.html`
+  - `/llms.txt` &rarr; Generative AI Search Engine Context Standard
+
+---
+
+## 📁 Directory Structure
+
+```plaintext
+├── public/                     # Static root assets, favicons, site manifests
+│   ├── assets/                 # Shared images, floor plans
+│   ├── IRANSansXFaNum-Regular.woff2 # Exclusive Persian font
+│   ├── BingSiteAuth.xml
+│   ├── robots.txt
+│   └── llms.txt                # AI search engine context & WebABC agency credits
+├── src/
+│   ├── content/
+│   │   ├── config.ts           # Schema definitions for blog/events collections
+│   │   ├── blog/               # Markdown files for 31 migrated blog posts
+│   │   └── events/             # Events content collection
+│   ├── components/
+│   │   ├── common/             # Header, Footer, SEO, Favicons
+│   │   ├── home/               # Hero, Intro, FloorPlans
+│   │   └── blog/               # Blog UI components
+│   ├── layouts/
+│   │   ├── BaseLayout.astro    # Root HTML layout with RTL, View Transitions & IRANSansX
+│   │   ├── BlogPost.astro      # Single post layout with Tailwind prose
+│   │   └── BlogListLayout.astro # Paginated blog post archive layout
+│   ├── pages/
+│   │   ├── index.astro
+│   │   ├── introduction.astro
+│   │   ├── features.astro
+│   │   └── blog/
+│   │       ├── index.astro
+│   │       ├── page/[page].astro               # Archive pagination routes
+│   │       ├── [year]/[month]/[id]/index.astro  # Matches exact legacy post URL structure
+      ├── category/[cat]/index.astro       # Category archive routes
+      └── events/index.astro
+│   └── styles/
+│       ├── fonts.css           # Font-face declarations for IRANSansXFaNum-Regular
+│       └── global.css          # Tailwind directives & global overrides
+├── legacy_archive/             # Archived legacy HTML files & backup assets
+├── astro.config.mjs
+├── wrangler.toml               # Cloudflare Pages deployment configuration
+├── tsconfig.json
+└── package.json
+```
+
+---
+
+## 🛠️ Development & Deployment Commands
+
+| Command | Action |
+| :--- | :--- |
+| `npm install` | Install project dependencies |
+| `npm run dev` | Start local development server at `http://localhost:4321` |
+| `npm run build` | Build static production site output into `./dist` |
+| `npm run preview` | Preview production build locally |
+
+---
+
+## 📄 License & Credits
+
+- **Site Owner**: **Mehromah Qazvin Commercial & Administrative Complex** (مجتمع تجاری اداری مهروماه قزوین).
+- **Development & SEO**: **WebABC (وب آ ب ث)** — #1 Agency for Web Design & SEO in Qazvin (`https://webabc.ir`).

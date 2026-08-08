@@ -1,0 +1,147 @@
+---
+const floorDetails = [
+  'طبقه ۳ الی ۹ : پارکینگ مسقف',
+  'طبقه ۳ + : فود کورت',
+  'طبقه ۲ + : پوشاک – کیف و کفش',
+  'طبقه ۱ + : تلفن همراه – لوازم الکترونیکی و لوازم جانبی آن ها',
+  'طبقه همکف : طلا و جواهر – ساعت و عینک',
+  'طبقه ۱ - : کالاهای لوکس – لوستر- لوازم ورزشی – لوازم آرایشی و بهداشتی',
+  'طبقه ۲- : لوازم آشپرخانه – کالاهای تزئینی – هایپر مارکت',
+  'طبقه ۳- : انباری ها',
+];
+
+const floorPlans = [
+  { thumbJpg: '/assets/images/plan-minus1t.jpg', thumbWebp: '/assets/images/plan-minus1t.webp', full: '/assets/images/plan-minus1.jpg', label: 'طبقه ۱-' },
+  { thumbJpg: '/assets/images/plan-minus2t.jpg', thumbWebp: '/assets/images/plan-minus2t.webp', full: '/assets/images/plan-minus2.jpg', label: 'طبقه ۲-' },
+  { thumbJpg: '/assets/images/plan-1t.jpg', thumbWebp: '/assets/images/plan-1t.webp', full: '/assets/images/plan-1.jpg', label: 'طبقه ۱+' },
+  { thumbJpg: '/assets/images/plan-2t.jpg', thumbWebp: '/assets/images/plan-2t.webp', full: '/assets/images/plan-2.jpg', label: 'طبقه ۲+' },
+  { thumbJpg: '/assets/images/plan-gt.jpg', thumbWebp: '/assets/images/plan-gt.webp', full: '/assets/images/plan-g.jpg', label: 'همکف' },
+];
+---
+
+<!-- Parallax Banner 2 -->
+<div
+  class="relative py-24 text-center text-white parallax-bg border-y border-zinc-800"
+  style="background-image: url('/assets/images/2.webp'), url('/assets/images/2.jpg');"
+>
+  <div class="absolute inset-0 bg-black/40"></div>
+  <div class="relative z-10 space-y-3">
+    <h2 class="text-3xl sm:text-4xl font-bold text-white">نقشه طبقات</h2>
+    <h3 class="text-xl sm:text-2xl font-bold text-red-500">نقشه طبقات مجتمع تجاری و پارکینگ طبقاتی مهروماه</h3>
+  </div>
+</div>
+
+<!-- Maps Section -->
+<section id="maps" class="py-16 sm:py-24 bg-white text-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+      
+      <!-- Descriptions (Left Column in RTL) -->
+      <div class="md:col-span-5 space-y-6 text-justify">
+        <h2 class="text-3xl font-bold text-center md:text-right text-zinc-900">نقشه طبقات</h2>
+
+        <!-- Separator Flower Line -->
+        <div class="separator-line-flower">
+          <div class="line line-left"></div>
+          <div class="line line-right"></div>
+          <div class="star">❋</div>
+        </div>
+
+        <div class="space-y-3 text-base text-zinc-700 font-medium">
+          {floorDetails.map((detail) => (
+            <p class="leading-relaxed border-b border-zinc-100 pb-2 m-0">{detail}</p>
+          ))}
+        </div>
+      </div>
+
+      <!-- Floor Plan Grid Thumbnails (Right Column in RTL) -->
+      <div class="md:col-span-7">
+        <div class="grid grid-cols-2 gap-4">
+          {floorPlans.map((plan) => (
+            <div
+              class="group relative cursor-pointer overflow-hidden rounded-xl border border-zinc-200 hover:border-red-600 transition-all shadow-md hover:shadow-xl map-thumb"
+              data-full={plan.full}
+            >
+              <picture>
+                <source srcset={plan.thumbWebp} type="image/webp" />
+                <img
+                  src={plan.thumbJpg}
+                  alt={plan.label}
+                  width="400"
+                  height="176"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </picture>
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-lg">
+                بزرگ‌نمایی {plan.label} 🔍
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Vanilla JS Lightbox Modal Container -->
+<div id="lightbox-modal" class="lightbox-modal">
+  <div class="relative p-2">
+    <button
+      id="lightbox-close"
+      type="button"
+      class="absolute -top-10 left-0 text-white hover:text-red-500 text-3xl font-bold transition-colors"
+      aria-label="بستن"
+    >&times;</button>
+    <img
+      id="lightbox-img"
+      src=""
+      alt="پلان طبقه"
+      width="800"
+      height="600"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+</div>
+
+<script>
+  function initLightbox() {
+    const modal = document.getElementById('lightbox-modal');
+    const modalImg = document.getElementById('lightbox-img') as HTMLImageElement;
+    const closeBtn = document.getElementById('lightbox-close');
+    const thumbs = document.querySelectorAll('.map-thumb');
+
+    if (!modal || !modalImg) return;
+
+    thumbs.forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        const fullSrc = thumb.getAttribute('data-full');
+        if (fullSrc) {
+          modalImg.src = fullSrc;
+          modal.classList.add('active');
+        }
+      });
+    });
+
+    function closeModal() {
+      modal?.classList.remove('active');
+    }
+
+    closeBtn?.addEventListener('click', closeModal);
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal?.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  }
+
+  initLightbox();
+  document.addEventListener('astro:page-load', initLightbox);
+</script>

@@ -1,0 +1,74 @@
+---
+export interface Props {
+  title: string;
+  url: string;
+  pubDate?: string;
+  category?: string;
+  author?: string;
+  description?: string;
+  image?: string;
+}
+
+const { title, url, pubDate, description, image } = Astro.props;
+
+function formatShamsiDate(dateStr?: string) {
+  if (!dateStr) return '';
+  try {
+    const d = new Date(dateStr);
+    return new Intl.DateTimeFormat('fa-IR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    }).format(d);
+  } catch (e) {
+    return dateStr;
+  }
+}
+
+const shamsiDate = formatShamsiDate(pubDate);
+---
+
+<article class="bg-white p-8 rounded-lg shadow-sm border border-zinc-200 text-center space-y-6">
+  <!-- Title -->
+  <h2 class="text-2xl sm:text-3xl font-black text-zinc-800 hover:text-red-600 transition-colors leading-tight">
+    <a href={url}>{title}</a>
+  </h2>
+
+  {pubDate && (
+    <div class="text-xs text-zinc-400 font-medium -mt-3">
+      <time datetime={pubDate}>{shamsiDate}</time>
+    </div>
+  )}
+
+  <!-- Featured Image -->
+  {image && (
+    <div class="overflow-hidden rounded-lg">
+      <a href={url}>
+        <img
+          src={image}
+          alt={title}
+          loading="lazy"
+          decoding="async"
+          class="w-full h-auto max-h-[500px] object-cover mx-auto hover:scale-[1.02] transition-transform duration-300 rounded-lg"
+        />
+      </a>
+    </div>
+  )}
+
+  <!-- Excerpt / Description -->
+  {description && (
+    <p class="text-base text-zinc-600 leading-relaxed text-justify max-w-3xl mx-auto">
+      {description}
+    </p>
+  )}
+
+  <!-- Read More Button -->
+  <div class="pt-2 text-center">
+    <a
+      href={url}
+      class="inline-block bg-red-600 hover:bg-red-700 text-white font-semibold text-base px-8 py-3 rounded transition-colors shadow-md hover:shadow-lg"
+    >
+      مطالعه کامل »
+    </a>
+  </div>
+</article>

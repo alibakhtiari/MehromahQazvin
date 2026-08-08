@@ -1,0 +1,144 @@
+---
+export interface Props {
+  title?: string | undefined;
+  description?: string | undefined;
+  image?: string | undefined;
+  type?: 'website' | 'article' | undefined;
+  pubDate?: string | undefined;
+  author?: string | undefined;
+  category?: string | undefined;
+  canonicalURL?: URL | string | undefined;
+}
+
+const {
+  title = "مجتمع تجاری و پارکینگ طبقاتی مهروماه قزوین",
+  description = "مجتمع تجاری مهروماه قزوین شامل ۵ طبقه تجاری با بیش از ۳۰۰ واحدتجاری ، ۷ طبقه پارکینگ سر پوشیده با ظرفیت ۹۰۹ خودرو و فودکورت در قلب تجاری قزوین واقع شده است.",
+  image = "/assets/images/Mehromah.jpg",
+  type = "website",
+  pubDate,
+  author = "مدیریت مهروماه",
+  category,
+  canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://mehromahqazvin.ir'),
+} = Astro.props;
+
+const siteTitle = (title || "").includes("مهروماه") ? title : `${title} - مجتمع تجاری مهروماه قزوین`;
+const fullImageUrl = new URL(image || "/assets/images/Mehromah.jpg", Astro.site || 'https://mehromahqazvin.ir').href;
+---
+
+<!-- Primary Meta Tags -->
+<title>{siteTitle}</title>
+<meta name="title" content={siteTitle} />
+<meta name="description" content={description} />
+<meta name="author" content={author} />
+<meta name="robots" content="index, follow" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Favicon & PWA Icons -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+<meta name="msapplication-TileColor" content="#ffc40d" />
+<meta name="theme-color" content="#ffffff" />
+
+<!-- Geo & Local Business Tags -->
+<meta name="geo.placename" content="Qazvin" />
+<meta name="geo.position" content="36.2742302;50.0080036" />
+<meta name="geo.region" content="IR" />
+
+<!-- Open Graph / Facebook / WhatsApp -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={siteTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={fullImageUrl} />
+<meta property="og:site_name" content="مجتمع تجاری مهروماه قزوین" />
+<meta property="og:locale" content="fa_IR" />
+
+{category && <meta property="article:section" content={category} />}
+
+<!-- Local Business OpenGraph Metadata -->
+<meta property="place:location:latitude" content="36.2742302" />
+<meta property="place:location:longitude" content="50.0080036" />
+<meta property="business:contact_data:street_address" content="خیابان خیام - مجتمع تجاری مهر و ماه" />
+<meta property="business:contact_data:locality" content="Qazvin" />
+<meta property="business:contact_data:country_name" content="Iran - ایران" />
+<meta property="business:contact_data:phone_number" content="028 3335 6206" />
+<meta property="business:contact_data:email" content="info@mehromahqazvin.ir" />
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={Astro.url} />
+<meta name="twitter:title" content={siteTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={fullImageUrl} />
+
+<!-- JSON-LD Structured Data: ShoppingCenter Schema -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ShoppingCenter",
+  "name": "مجتمع تجاری مهروماه قزوین - Mehr o Mah",
+  "image": fullImageUrl,
+  "@id": "https://mehromahqazvin.ir",
+  "url": "https://mehromahqazvin.ir",
+  "telephone": "028 3335 6206",
+  "email": "info@mehromahqazvin.ir",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "خیابان خیام شمال",
+    "addressLocality": "Qazvin",
+    "addressRegion": "Qazvin",
+    "addressCountry": "IR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 36.2742302,
+    "longitude": 50.0080036
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "opens": "09:00",
+    "closes": "22:30"
+  },
+  "hasMap": "https://maps.google.com/?q=36.2742302,50.0080036"
+})} />
+
+<!-- Additional Article Schema for Blog Posts -->
+{type === 'article' && (
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": title,
+    "image": [fullImageUrl],
+    "datePublished": pubDate,
+    "articleSection": category,
+    "author": {
+      "@type": "Organization",
+      "name": author || "مدیریت مهروماه"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "مجتمع تجاری مهروماه قزوین",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://mehromahqazvin.ir/assets/images/Mehromah.jpg"
+      }
+    },
+    "description": description
+  })} />
+)}

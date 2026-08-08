@@ -1,0 +1,30 @@
+---
+export interface Props {
+  currentPage: number;
+  totalPages: number;
+  baseUrl: string;
+}
+
+const { currentPage, totalPages, baseUrl } = Astro.props;
+---
+
+{totalPages > 1 && (
+  <nav class="flex justify-center items-center gap-2 pt-8" aria-label="صفحات">
+    {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => {
+      const href = pageNum === 1 ? baseUrl : `${baseUrl}page/${pageNum}/`;
+      const isCurrent = pageNum === currentPage;
+      return (
+        <a
+          href={href}
+          class={`px-4 py-2 text-sm font-semibold rounded transition-colors ${
+            isCurrent
+              ? 'bg-red-600 text-white'
+              : 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200'
+          }`}
+        >
+          {pageNum}
+        </a>
+      );
+    })}
+  </nav>
+)}

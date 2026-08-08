@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const recentPosts = posts.slice(0, 5);
+
+const categories = [
+  { name: 'افتتاحیه‌ها', count: 8, href: '/blog/category/%d8%a7%d9%81%d8%aa%d8%aa%d8%a7%d8%ad%db%8c%d9%87%e2%80%8c%d9%87%d8%a7/' },
+  { name: 'حامی', count: 2, href: '/blog/category/%d8%ad%d8%a7%d9%85%db%8c/' },
+  { name: 'رخداد', count: 18, href: '/blog/category/%d8%b1%d8%ae%d8%af%d8%a7%d8%af/' },
+  { name: 'مراسمات', count: 24, href: '/blog/category/ev/' },
+  { name: 'مسابقات', count: 2, href: '/blog/category/%d9%85%d8%b3%d8%a7%d8%a8%d9%82%d8%a7%d8%aa/' },
+  { name: 'هنر', count: 5, href: '/blog/category/%d9%87%d9%86%d8%b1/' },
+];
+---
+
+<aside class="space-y-8 sticky top-24">
+  <!-- Recent Posts Widget -->
+  <div class="bg-white p-6 rounded-lg shadow-sm border border-zinc-200 text-right space-y-4">
+    <h2 class="text-xl font-bold text-zinc-900 pb-3 border-b-2 border-red-600">آخرین رویداد‌ها</h2>
+    <ul class="space-y-3 m-0 p-0 list-none text-sm">
+      {recentPosts.map((post) => {
+        const postUrl = `/blog/${post.data.year || '2017'}/${post.data.month || '07'}/${post.data.id || '1173'}/`;
+        return (
+          <li class="border-b border-zinc-100 pb-2.5 last:border-0 last:pb-0">
+            <a
+              href={postUrl}
+              class="text-red-600 hover:text-zinc-900 transition-colors font-medium leading-snug block"
+            >
+              {post.data.title}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+
+  <!-- Categories Widget -->
+  <div class="bg-white p-6 rounded-lg shadow-sm border border-zinc-200 text-right space-y-4">
+    <h2 class="text-xl font-bold text-zinc-900 pb-3 border-b-2 border-red-600">دسته‌بندی ها</h2>
+    <ul class="space-y-2.5 m-0 p-0 list-none text-sm">
+      {categories.map((cat) => (
+        <li class="border-b border-zinc-100 pb-2 last:border-0 last:pb-0">
+          <a
+            href={cat.href}
+            class="text-red-600 hover:text-zinc-900 transition-colors font-medium flex items-center justify-between"
+          >
+            <span>{cat.name}</span>
+            <span class="text-zinc-400 font-normal text-xs">({cat.count})</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</aside>

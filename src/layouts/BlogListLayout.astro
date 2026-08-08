@@ -1,0 +1,60 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import BlogCard from '@/components/blog/BlogCard.astro';
+import BlogSidebar from '@/components/blog/BlogSidebar.astro';
+import PostPagination from '@/components/blog/PostPagination.astro';
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  title: string;
+  description?: string;
+  posts: CollectionEntry<'blog'>[];
+  baseUrl?: string;
+  currentPage?: number;
+  totalPages?: number;
+}
+
+const {
+  title,
+  description = "آرشیو کامل اخبار، رویدادها و اطلاعیه‌های مجتمع تجاری اداری مهروماه قزوین.",
+  posts,
+  baseUrl = "/blog/",
+  currentPage = 1,
+  totalPages = 4,
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="bg-[#eef0f2] min-h-screen pt-24 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+        
+        <!-- Main Posts Column (Right Column in RTL) -->
+        <div class="md:col-span-9 space-y-8">
+          {posts.map((post) => {
+            const postUrl = `/blog/${post.data.year || '2017'}/${post.data.month || '07'}/${post.data.id || '1173'}/`;
+            return (
+              <BlogCard
+                title={post.data.title}
+                url={postUrl}
+                pubDate={post.data.pubDate}
+                category={post.data.category}
+                author={post.data.author}
+                description={post.data.description}
+                image={post.data.image}
+              />
+            );
+          })}
+
+          <PostPagination currentPage={currentPage} totalPages={totalPages} baseUrl={baseUrl} />
+        </div>
+
+        <!-- Sidebar Column (Left Column in RTL) -->
+        <div class="md:col-span-3">
+          <BlogSidebar />
+        </div>
+
+      </div>
+    </div>
+  </div>
+</BaseLayout>

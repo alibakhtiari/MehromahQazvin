@@ -1,0 +1,64 @@
+---
+---
+<section
+  id="home"
+  class="relative w-full h-screen min-h-[600px] flex items-center justify-center text-center parallax-bg text-white px-4"
+  style="background-image: url('/assets/images/hero.jpg');"
+>
+  <!-- Dark Overlay for readibility -->
+  <div class="absolute inset-0 bg-black/40"></div>
+
+  <div class="relative z-10 space-y-6 max-w-4xl mx-auto flex flex-col items-center">
+    <!-- Main Heading -->
+    <h1
+      data-aos="fade-up"
+      class="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-relaxed drop-shadow-md"
+    >
+      مجتمع تجاری و پارکینگ طبقاتی مهروماه
+    </h1>
+
+    <!-- Decorative Line & Red Dot Separator -->
+    <div data-aos="fade-up" data-aos-delay="200" class="flex items-center justify-center gap-3 py-2">
+      <svg width="230" height="20" xmlns="http://www.w3.org/2000/svg" class="hidden sm:block">
+        <g>
+          <line stroke="#fff" x1="20" y1="10" x2="223" y2="10" stroke-width="1.5" />
+          <path fill="#fff" d="m221,13.9l4.5,-7.8l4.5,7.8z" transform="rotate(-90 223.5 12)" />
+        </g>
+      </svg>
+
+      <!-- Center Red Dot -->
+      <span class="w-2.5 h-2.5 bg-red-600 rounded-full inline-block shadow-[0_0_8px_#f00]"></span>
+
+      <svg width="230" height="20" xmlns="http://www.w3.org/2000/svg" class="hidden sm:block">
+        <g>
+          <line stroke="#fff" x1="7" y1="10" x2="210" y2="10" stroke-width="1.5" />
+          <path fill="#fff" d="m0,13.9l4.5,-7.8l4.5,7.8z" transform="rotate(90 4.5 10)" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- Mehromah Logo SVG -->
+    <div data-aos="fade-down" data-aos-delay="400" class="pt-2">
+      <img
+        src="/assets/images/logo.svg"
+        alt="مهروماه"
+        width="320"
+        height="240"
+        fetchpriority="high"
+        decoding="async"
+        class="w-64 sm:w-80 h-auto mx-auto drop-shadow-2xl"
+      />
+    </div>
+  </div>
+
+  <!-- Down scroll arrow -->
+  <a
+    href="#intro"
+    class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white p-3 hover:text-red-500 transition-colors animate-bounce z-10"
+    aria-label="برو به معرفی"
+  >
+    <svg class="w-9 h-9 stroke-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+    </svg>
+  </a>
+</section>

@@ -1,0 +1,41 @@
+---
+import BlogListLayout from '@/layouts/BlogListLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  const sortedPosts = allPosts.sort(
+    (a, b) => (b.data.pubDate || '').localeCompare(a.data.pubDate || '')
+  );
+
+  const pageSize = 10;
+  const totalPages = Math.ceil(sortedPosts.length / pageSize);
+
+  const paths = [];
+  for (let page = 1; page <= totalPages; page++) {
+    const start = (page - 1) * pageSize;
+    const end = start + pageSize;
+    paths.push({
+      params: { page: page.toString() },
+      props: {
+        pagePosts: sortedPosts.slice(start, end),
+        currentPage: page,
+        totalPages,
+      },
+    });
+  }
+
+  return paths;
+}
+
+const { pagePosts, currentPage, totalPages } = Astro.props;
+---
+
+<BlogListLayout
+  title={`اخبار و رویدادها - صفحه ${currentPage} | مجتمع تجاری مهروماه قزوین`}
+  description={`صفحه ${currentPage} از آرشیو اخبار و اطلاعیه‌های مجتمع تجاری اداری مهروماه قزوین.`}
+  posts={pagePosts}
+  baseUrl="/blog/"
+  currentPage={currentPage}
+  totalPages={totalPages}
+/>

@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# HTTPS Redirect
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Legacy HTML URLs 301 Redirects
+RewriteRule ^introduction\.html$ /introduction/ [R=301,L]
+RewriteRule ^features\.html$ /features/ [R=301,L]
+
+# Directory Index fallback
+DirectoryIndex index.html
+</IfModule>

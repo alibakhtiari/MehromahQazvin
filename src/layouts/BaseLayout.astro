@@ -1,0 +1,51 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import SEO from '../components/common/SEO.astro';
+import Header from '../components/common/Header.astro';
+import Footer from '../components/common/Footer.astro';
+import 'aos/dist/aos.css';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string | undefined;
+  description?: string | undefined;
+  image?: string | undefined;
+  type?: 'website' | 'article' | undefined;
+  pubDate?: string | undefined;
+  author?: string | undefined;
+}
+
+const { title, description, image, type, pubDate, author } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="dark">
+  <head>
+    <SEO title={title} description={description} image={image} type={type} pubDate={pubDate} author={author} />
+    <link rel="preload" href="/IRANSansXFaNum-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="/assets/logo/logo-red.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="/assets/images/sliders/1.webp" as="image" type="image/webp" fetchpriority="high" />
+    <ClientRouter />
+  </head>
+  <body class="bg-zinc-900 text-zinc-100 min-h-screen flex flex-col antialiased">
+    <Header />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      import AOS from 'aos';
+      function initAOS() {
+        AOS.init({
+          duration: 800,
+          once: true,
+          easing: 'ease-out-cubic',
+        });
+      }
+
+      initAOS();
+      document.addEventListener('astro:page-load', initAOS);
+    </script>
+  </body>
+</html>

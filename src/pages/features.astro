@@ -1,0 +1,51 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ContactSection from '@/components/home/ContactSection.astro';
+
+const features = [
+  { title: 'کافی شاپ و کافه تریا', desc: 'تامین هوای مطبوع و فضای اختصاصی استراحت با بهترین نوشیدنی‌ها' },
+  { title: 'فودکورت', desc: 'مجموعه متناوب غذاهای ایرانی و بین‌المللی با چشم‌انداز به شهر قزوین' },
+  { title: 'فروشگاهها', desc: 'بیش از ۳۰۰ واحد تجاری عرضه پوشاک، طلا، جواهر، کیف و کفش و کالاهای لوکس' },
+  { title: 'مهد کودک', desc: 'محیط امن و مجهز برای نگهداری و بازی کودکان زیر نظر مربیان مجرب' },
+  { title: 'هایپرمارکت', desc: 'تامین کلیه نیازهای روزمره، مواد غذایی و کالاهای مصرفی خانواده' },
+  { title: 'هنر و سرگرمی', desc: 'کافه هنرمندان و پاتوق اختصاصی برای ارائه خدمات هنری به شهروندان' },
+  { title: 'پارکینگ مسقف', desc: '۷ طبقه پارکینگ مسقف با ظرفیت بالای ۱۰۰۰ خودرو و هوشمندسازی کامل' },
+];
+---
+
+<BaseLayout
+  title="امکانات مجتمع - مجتمع تجاری مهروماه قزوین"
+  description="مجتمع تجاری مهروماه قزوین شامل ۵ طبقه تجاری و ۷ طبقه پارکینگ مسقف همراه با فودکورت، شهربازی و امکانات کامل."
+>
+  <!-- Parallax Header -->
+  <div
+    class="relative py-28 text-center text-white parallax-bg border-b border-zinc-800"
+    style="background-image: url('/assets/images/1.jpg');"
+  >
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="relative z-10 space-y-3 max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl sm:text-5xl font-bold text-white">امکانات مجتمع</h2>
+      <h3 class="text-xl sm:text-2xl font-bold text-red-500">معرفی امکانات مجموعه</h3>
+    </div>
+  </div>
+
+  <!-- Features Grid Section -->
+  <section class="py-16 sm:py-24 bg-white text-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {features.map((feat) => (
+          <div class="bg-zinc-50 p-8 rounded-xl border border-zinc-200 hover:border-red-600 transition-all shadow-sm hover:shadow-xl text-center space-y-4">
+            <div class="w-16 h-16 mx-auto rounded-full bg-red-100 flex items-center justify-center text-red-600 text-3xl font-bold">
+              ★
+            </div>
+            <h3 class="text-xl font-bold text-zinc-900">{feat.title}</h3>
+            <p class="text-sm text-zinc-600 leading-relaxed">{feat.desc}</p>
+            <hr class="border-zinc-200 my-4" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ContactSection />
+</BaseLayout>
